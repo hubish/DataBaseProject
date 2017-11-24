@@ -14,7 +14,7 @@ private:
 
 public:
     human();
-    human(human* human);//123321
+    human(human* human);
     human(string surname, string name, string patronymic, char sex, string phoneNumber, string email, string dateOfBirth, string description[], string medicalCard, string adress, string photo[10], int numberOfPhotos);
     void saveIntoFile(string fileName);
     human downloadFromFile(string fileName);
