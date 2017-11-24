@@ -5,7 +5,7 @@
 class doctor:public human
 {
 private:
-    string status, experience, position;
+    std::string status, experience, position;
 
 public:
     doctor();
