@@ -16,7 +16,7 @@ public:
     human();
     human(human* human);
     human(string surname, string name, string patronymic, char sex, string phoneNumber, string email, string dateOfBirth, string description[], string medicalCard, string adress, string photo[10], int numberOfPhotos);
-    void saveIntoFile(string fileName);
+    virtual void saveIntoFile(string fileName);
     human downloadFromFile(string fileName);
     void setPhoto(string photoName);
     void openPhoto(int number);
@@ -25,6 +25,7 @@ public:
     void setMedicalCard(string medicalCard);
     void setAdress(string adress);
     string getSurname();
+    virtual void print();
 };
 
 #endif // human_H

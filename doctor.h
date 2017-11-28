@@ -1,16 +1,18 @@
 #ifndef DOCTOR_H
 #define DOCTOR_H
 #include "human.h"
+#include "string.h"
 
 class doctor:public human
 {
 private:
-    std::string status, experience, position;
+    string status, experience, position;
 
 public:
     doctor();
     doctor(doctor* doctor);
     void saveIntoFile(string fileName);
+    void print();
     doctor downloadFromFile(string fileName);
 };
 
