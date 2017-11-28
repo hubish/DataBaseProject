@@ -1,14 +1,15 @@
 #ifndef HUMAN_H
 #define HUMAN_H
-#include "string.h"
+#include "string"
 
+using namespace std;
 
 class human
 {
 
-private:
+protected:
     char sex;
-    string surname, name, patronymic, phoneNumber, email, dateOfBirth, description[], medicalCard, adress;
+    string surname, name, patronymic, phoneNumber, email, dateOfBirth, description[255], medicalCard, adress;
     string photo[10];
     int numberOfPhotos;
 

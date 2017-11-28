@@ -1,7 +1,9 @@
 #ifndef DOCTOR_H
 #define DOCTOR_H
 #include "human.h"
-#include "string.h"
+#include "string"
+
+using namespace std;
 
 class doctor:public human
 {

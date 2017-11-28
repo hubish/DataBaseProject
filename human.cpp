@@ -1,8 +1,29 @@
 #include "human.h"
+#include "string"
+#include "iostream"
+using namespace std;
 
 human::human()
 {
 
+}
+
+human::human(human* human)
+{
+    surname=human->surname;
+    name=human->name;
+    patronymic=human->patronymic;
+    phoneNumber=human->phoneNumber;
+    email=human->email;
+    dateOfBirth=human->dateOfBirth;
+    medicalCard=human->medicalCard;
+    adress=human->adress;
+    for (int i=0;i<255;i++)
+        description[i]=human->description[i];
+    sex=human->sex;
+    numberOfPhotos=human->numberOfPhotos;
+    for (int i=0;i<numberOfPhotos;i++)
+        photo[i]=human->photo[i];
 }
 
 void human::print()

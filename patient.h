@@ -1,13 +1,14 @@
 #ifndef PATIENT_H
 #define PATIENT_H
-#include "string.h"
+#include "string"
 #include "human.h"
 
+using namespace std;
 
 class patient:public human
 {
 private:
-    string diagnosis[], masculine[];
+    string diagnosis[255], masculine[255];
 
 public:
     patient();
