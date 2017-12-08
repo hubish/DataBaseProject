@@ -11,11 +11,10 @@ private:
     string status, experience, position;
 
 public:
-    doctor();
     doctor(doctor* doctor);
     bool saveIntoFile(string fileName);
     void print();
-    doctor downloadFromFile(string fileName);
+    bool downloadFromFile(string fileName);
 };
 
 #endif // DOCTOR_H

@@ -4,11 +4,6 @@
 
 using namespace std;
 
-patient::patient()
-{
-
-}
-
 void patient::print()
 {
     cout<<"Фамилия:         "<<surname<<endl;
@@ -20,5 +15,9 @@ void patient::print()
     cout<<"День рождения:   "<<dateOfBirth<<endl;
     cout<<"Страховой полис: "<<medicalCard<<endl;
     cout<<"Адрес:           "<<adress<<endl;
+}
+
+bool patient::downloadFromFile(string fileName)
+{
 
 }

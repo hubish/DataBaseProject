@@ -1,25 +1,9 @@
 #include "human.h"
 #include "string"
 #include "iostream"
+#include "fstream"
 
 using namespace std;
-
-human::human()
-{
-    surname="No surname";
-    name="No name";
-    patronymic="No patronymic";
-    phoneNumber="No phone number";
-    email="No email";
-    dateOfBirth="No date of birth";
-    medicalCard="No medical card";
-    adress="No adress";
-    for (int i=0;i<255;i++)
-        description[i]="";
-    sex="No sex";
-    numberOfPhotos=0;
-    numberOfDescription=0;
-}
 
 human::human(human* human)
 {
@@ -29,7 +13,8 @@ human::human(human* human)
     phoneNumber=human->phoneNumber;
     email=human->email;
     dateOfBirth=human->dateOfBirth;
-    medicalCard=human->medicalCard;
+    medicalCard[0]=human->medicalCard[0];
+    medicalCard[1]=human->medicalCard[1];
     adress=human->adress;
     numberOfDescription=human->numberOfDescription;
     for (int i=0;i<numberOfDescription;i++)
@@ -38,13 +23,14 @@ human::human(human* human)
     numberOfPhotos=human->numberOfPhotos;
     for (int i=0;i<numberOfPhotos;i++)
         photo[i]=human->photo[i];
+    lastEditing=this->lastEditing;
 }
 
 human::human(string surname, string name, string patronymic,
              char sex, string phoneNumber, string email,
-             string dateOfBirth, int numberOfDescription, string description[lengthOfDescription],
+             string dateOfBirth, int numberOfDescription, string description[LENGTH],
              string medicalCard[2], string adress, string photo[amountOfPhotos],
-             int numberOfPhotos, string linksToPhotos[amountOfPhotos])
+int numberOfPhotos, string linksToPhotos[amountOfPhotos], string lastEditing)
 {
     this->surname=surname;
     this->name=name;
@@ -53,13 +39,18 @@ human::human(string surname, string name, string patronymic,
     this->phoneNumber=phoneNumber;
     this->email=email;
     this->dateOfBirth=dateOfBirth;
-    this->description=description;
-    this->medicalCard=medicalCard;
+    this->medicalCard[0]=medicalCard[0];
+    this->medicalCard[1]=medicalCard[1];
+    for (int i=0; i<numberOfDescription; i++)
+        this->description[i]=description[i];
     this->adress=adress;
-    this->photo=photo;
+    for (int i=0; i<numberOfPhotos; i++)
+        this->photo[i]=photo[i];
     this->numberOfPhotos=numberOfPhotos;
-    this->linksToPhotos=linksToPhotos;
+    for (int i=0; i<numberOfPhotos; i++)
+        this->linksToPhotos[i]=linksToPhotos[i];
     this->numberOfDescription=numberOfDescription;
+    this->lastEditing=lastEditing;
 }
 
 bool human::saveIntoFile()
@@ -68,6 +59,7 @@ bool human::saveIntoFile()
     mainPath="\\" + surname + "_" + name + "_" + patronymic + "\\";
     file=mainPath+"mainInformation.txt";
     const char *cstr = file.c_str();
+
     ofstream out(cstr, ios_base::app);
     delete(cstr);
     time_t  timev;
@@ -86,27 +78,74 @@ bool human::saveIntoFile()
     out.close();
 
     file=mainPath + "listOfPhotos.txt";
-    for (i=0; i<numberOfPhotos; i++)
+    for (int i=0; i<numberOfPhotos; i++)
         copyFile(linksToPhotos[i].c_str(), (mainPath + photo[i]).c_str());
 
-    *cstr = file.c_str();
-    out(cstr, ios_base::app);
-    delete(cstr);
+    const char *cstr1 = file.c_str();
+    ofstream out2(cstr1, ios_base::app);
+    delete(cstr1);
     time(&timev);
-    out << timev <<endl;
-    for (i=0; i<numberOfPhotos; i++)
-        out << photo[i] <<endl;
-    out.close();
+    out2 << timev <<endl;
+    for (int i=0; i<numberOfPhotos; i++)
+        out2<< photo[i] <<endl;
+    out2.close();
 
     file=mainPath + "description.txt";
-    *cstr = file.c_str();
-    out(cstr, ios_base::app);
-    delete(cstr);
+    const char *cstr2 = file.c_str();
+    ofstream out3(cstr2, ios_base::app);
+    delete(cstr2);
     time(&timev);
-    out << timev << endl;
-    for (i=0; i<numberOfDescription; i++)
-        out << description[i] << endl;
-    out.close();
+    out3 << timev << endl;
+    for (int i=0; i<numberOfDescription; i++)
+        out3 << description[i] << endl;
+    out3.close();
+}
+
+bool human::downloadFromFile(string fileName)
+//Считываем пациента из папки fileName
+{
+    string f3=fileName+"\mainInformation.txt";
+    const char *cstr = f3.c_str();
+    ifstream in(cstr);
+    getline(in, lastEditing);
+    getline(in, surname);
+    getline(in, name);
+    getline(in, patronymic);
+    getline(in, dateOfBirth);
+    in>>sex;
+    getline(in, phoneNumber);
+    getline(in, phoneNumber);
+    getline(in, email);
+    getline(in, adress);
+    getline(in, medicalCard[0]);
+    getline(in, medicalCard[1]);
+    in.close();
+
+    string f2=fileName+"\description.txt";
+    const char *cstr2 = f2.c_str();
+    ifstream in2(cstr2);
+    delete(cstr2);
+    numberOfDescription=0;
+    while (!in2.eof())
+    {
+        numberOfDescription++;
+        getline(in2, description[numberOfDescription-1]);
+    }
+    in2.close();
+
+    string f1=fileName+"\description.txt";
+    const char *cstr3 = f1.c_str();
+    ifstream in3(cstr3);
+    delete(cstr3);
+    numberOfPhotos=0;
+    while (!in3.eof())
+    {
+        numberOfPhotos++;
+        getline(in3, photo[numberOfPhotos-1]);
+    }
+    in3.close();
+
+    //Написать добавление ФИО в отдельный файл со списком всех ФИО пациенито и врачей
 }
 
 void human::copyFile(const char* srce_file, const char* dest_file )
@@ -120,7 +159,7 @@ bool human::setPhoto(string name, string fullPath)
 {
     if (numberOfPhotos+1>amountOfPhotos)
         return false;
-     else
+    else
     {
         numberOfPhotos++;
         photo[numberOfPhotos]=name;
@@ -131,18 +170,21 @@ bool human::setPhoto(string name, string fullPath)
 
 void human::openPhoto(int number)
 {
-    ShellExecute (NULL, "open", "[b]"+photo[number]+"[/b]",NULL, NULL, SW_SHOWNORMAL);
+    //system("Warface_sample.jpg");
+    //ShellExecute (NULL, "open", "[b]"+photo[number]+"[/b]",NULL, NULL, SW_SHOWNORMAL);
 }
 
 void human::setDescription(string* description)
 {
     numberOfDescription=sizeof(description)/sizeof(string);
-    this->description=description;
+    for (int i=0; i<numberOfDescription; i++)
+        this->description[i]=description[i];
 }
 
 void human::setMedicalCard(string* medicalCard)
 {
-    this->medicalCard=medicalCard;
+    this->medicalCard[0]=medicalCard[0];
+    this->medicalCard[1]=medicalCard[1];
 }
 
 void human::setAdress(string adress)
