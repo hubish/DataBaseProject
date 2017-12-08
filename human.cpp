@@ -18,6 +18,7 @@ human::human()
         description[i]="";
     sex="No sex";
     numberOfPhotos=0;
+    numberOfDescription=0;
 }
 
 human::human(human* human)
@@ -30,7 +31,8 @@ human::human(human* human)
     dateOfBirth=human->dateOfBirth;
     medicalCard=human->medicalCard;
     adress=human->adress;
-    for (int i=0;i<255;i++)
+    numberOfDescription=human->numberOfDescription;
+    for (int i=0;i<numberOfDescription;i++)
         description[i]=human->description[i];
     sex=human->sex;
     numberOfPhotos=human->numberOfPhotos;
@@ -40,7 +42,7 @@ human::human(human* human)
 
 human::human(string surname, string name, string patronymic,
              char sex, string phoneNumber, string email,
-             string dateOfBirth, string description[lengthOfDescription],
+             string dateOfBirth, int numberOfDescription, string description[lengthOfDescription],
              string medicalCard[2], string adress, string photo[amountOfPhotos],
              int numberOfPhotos, string linksToPhotos[amountOfPhotos])
 {
@@ -57,6 +59,7 @@ human::human(string surname, string name, string patronymic,
     this->photo=photo;
     this->numberOfPhotos=numberOfPhotos;
     this->linksToPhotos=linksToPhotos;
+    this->numberOfDescription=numberOfDescription;
 }
 
 bool human::saveIntoFile()
@@ -101,7 +104,7 @@ bool human::saveIntoFile()
     delete(cstr);
     time(&timev);
     out << timev << endl;
-    for (i=0; i<(sizeof(description)/sizeof(string)); i++)
+    for (i=0; i<numberOfDescription; i++)
         out << description[i] << endl;
     out.close();
 }
@@ -129,6 +132,87 @@ bool human::setPhoto(string name, string fullPath)
 void human::openPhoto(int number)
 {
     ShellExecute (NULL, "open", "[b]"+photo[number]+"[/b]",NULL, NULL, SW_SHOWNORMAL);
+}
+
+void human::setDescription(string* description)
+{
+    numberOfDescription=sizeof(description)/sizeof(string);
+    this->description=description;
+}
+
+void human::setMedicalCard(string* medicalCard)
+{
+    this->medicalCard=medicalCard;
+}
+
+void human::setAdress(string adress)
+{
+    this->adress=adress;
+}
+
+string human::getSurname()
+{
+    return surname;
+}
+
+string human::getName()
+{
+    return name;
+}
+
+string human::getPatronymic()
+{
+    return patronymic;
+}
+
+string human::getPhoneNumber()
+{
+    return phoneNumber;
+}
+
+string human::getEmail()
+{
+    return email;
+}
+
+string human::getDateOfBirth()
+{
+    return dateOfBirth;
+}
+
+int human::getNumberOfDescription()
+{
+    return numberOfDescription;
+}
+
+string* human::getDescription()
+{
+    return description;
+}
+
+string* human::getMedicalCard()
+{
+    return medicalCard;
+}
+
+string human::gerAdress()
+{
+    return adress;
+}
+
+int human::gerNumberOfPhotos()
+{
+    return numberOfPhotos;
+}
+
+string* human::getPhotos()
+{
+    return photo;
+}
+
+string* human::getLinksToPhotos()
+{
+    return linksToPhotos;
 }
 
 void human::print()

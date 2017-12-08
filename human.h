@@ -13,14 +13,14 @@ protected:
     char sex;
     string surname, name, patronymic, phoneNumber, email, dateOfBirth, description[lengthOfDescription], medicalCard[2], adress;
     string photo[amountOfPhotos], linksToPhotos[amountOfPhotos];
-    int numberOfPhotos;
+    int numberOfPhotos, numberOfDescription;
     void copyFile(const char* srce_file, const char* dest_file );
 
 public:
     /**/human();
     /**/human(human* human);
     /**/human(string surname, string name, string patronymic, char sex,
-          string phoneNumber, string email, string dateOfBirth,
+          string phoneNumber, string email, string dateOfBirth, int numberOfDescription,
           string description[lengthOfDescription], string medicalCard[2],
           string adress, string photo[amountOfPhotos], int numberOfPhotos, string linksToPhotos[amountOfPhotos]);
     /**/virtual bool saveIntoFile();
@@ -28,10 +28,22 @@ public:
     /**/bool setPhoto(string photoName, string fullPath);
     /**/void openPhoto(int number);
 
-    void setDescription(string description[]);
-    void setMedicalCard(string medicalCard);
-    void setAdress(string adress);
-    string getSurname();
+    /**/void setDescription(string* description);
+    /**/void setMedicalCard(string* medicalCard);
+    /**/void setAdress(string adress);
+    /**/string getSurname();
+    /**/string getName();
+    /**/string getPatronymic();
+    /**/string getPhoneNumber();
+    /**/string getEmail();
+    /**/string getDateOfBirth();
+    /**/int getNumberOfDescription();
+    /**/string* getDescription();
+    /**/string* getMedicalCard();
+    /**/string gerAdress();
+    /**/int gerNumberOfPhotos();
+    /**/string* getPhotos();
+    /**/string* getLinksToPhotos();
     /**/virtual void print();
 };
 
