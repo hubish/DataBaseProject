@@ -13,7 +13,7 @@ private:
 public:
     doctor();
     doctor(doctor* doctor);
-    void saveIntoFile(string fileName);
+    bool saveIntoFile(string fileName);
     void print();
     doctor downloadFromFile(string fileName);
 };

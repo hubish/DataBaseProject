@@ -13,7 +13,7 @@ private:
 public:
     patient();
     patient(patient* patient);
-    void saveIntoFile(string fileName);
+    bool saveIntoFile(string fileName);
     void print();
     patient downloadFromFile(string fileName);
     void setDiagnosis(string diagnosis[]);
