@@ -19,7 +19,7 @@ public:
               string adress, string* photo, int numberOfPhotos,
               string* linksToPhotos, int numberOfDiagnosis, string* diagnosis, int numberOfMasculine, string* masculine, string lastEditing);
 
-    /**/bool saveIntoFile();
+    /**/bool saveIntoFile(); //Добавить сохранение в отдельный файл ФИО пациентов для последующего поиска
     /**/void print();
     /**/bool downloadFromFile(string fileName);
     /**/void setDiagnosis(string* diagnosis, int n);
