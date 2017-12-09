@@ -3,6 +3,7 @@
 
 int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "Rus");
     QApplication a(argc, argv);
     mainWindow w;
     w.show();
