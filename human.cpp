@@ -99,6 +99,7 @@ bool human::saveIntoFile()
     for (int i=0; i<numberOfDescription; i++)
         out3 << description[i] << endl;
     out3.close();
+    //Написать добавление ФИО в отдельный файл со списком всех ФИО пациенито и врачей
 }
 
 bool human::downloadFromFile(string fileName)
@@ -143,9 +144,7 @@ bool human::downloadFromFile(string fileName)
         numberOfPhotos++;
         getline(in3, photo[numberOfPhotos-1]);
     }
-    in3.close();
-
-    //Написать добавление ФИО в отдельный файл со списком всех ФИО пациенито и врачей
+    in3.close();    
 }
 
 void human::copyFile(const char* srce_file, const char* dest_file )
@@ -168,15 +167,9 @@ bool human::setPhoto(string name, string fullPath)
     }
 }
 
-void human::openPhoto(int number)
+void human::setDescription(string* description, int n)
 {
-    //system("Warface_sample.jpg");
-    //ShellExecute (NULL, "open", "[b]"+photo[number]+"[/b]",NULL, NULL, SW_SHOWNORMAL);
-}
-
-void human::setDescription(string* description)
-{
-    numberOfDescription=sizeof(description)/sizeof(string);
+    numberOfDescription=n;
     for (int i=0; i<numberOfDescription; i++)
         this->description[i]=description[i];
 }

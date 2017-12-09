@@ -25,9 +25,8 @@ public:
     /**/virtual bool saveIntoFile();
     /**/virtual bool downloadFromFile(string fileName);
     /**/bool setPhoto(string photoName, string fullPath);
-    /**/void openPhoto(int number);
 
-    /**/void setDescription(string* description);
+    /**/void setDescription(string* description, int n);
     /**/void setMedicalCard(string* medicalCard);
     /**/void setAdress(string adress);
     /**/string getSurname();

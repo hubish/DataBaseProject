@@ -32,7 +32,8 @@ SOURCES += \
     avlTree.cpp \
     doctor.cpp \
     human.cpp \
-    patient.cpp
+    patient.cpp \
+    frameToVeiwPhotos.cpp
 
 HEADERS += \
         mainWindow.h \
@@ -42,10 +43,12 @@ HEADERS += \
     avlTree.h \
     doctor.h \
     human.h \
-    patient.h
+    patient.h \
+    frameToVeiwPhotos.h
 
 FORMS += \
         mainWindow.ui \
     frameOfCreatingDoctor.ui \
     frameOfCreatingPatient.ui \
-    viewOfPatient.ui
+    viewOfPatient.ui \
+    frameToVeiwPhotos.ui

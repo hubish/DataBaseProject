@@ -9,6 +9,7 @@ class patient:public human
 {
 private:
     string diagnosis[LENGTH], masculine[LENGTH];
+    int numberOfDiagnosis, numberOfMasculine;
 
 public:
     patient(patient* patient);
@@ -18,13 +19,13 @@ public:
               string adress, string photo[amountOfPhotos], int numberOfPhotos,
               string linksToPhotos[amountOfPhotos], string lastEditing, string diagnosis[LENGTH], string masculine[LENGTH]);
 
-    bool saveIntoFile(string fileName);
+    /**/bool saveIntoFile();
     /**/void print();
-    bool downloadFromFile(string fileName);
-    void setDiagnosis(string diagnosis[]);
-    void changeDiagnosis(string diagnosis[]);
-    void setMasculine(string masculine[]);
-    void changeMasculine(string masculine[]);
+    /**/bool downloadFromFile(string fileName);
+    /**/void setDiagnosis(string* diagnosis, int n);
+    /**/void setMasculine(string* masculine, int n);
+    /**/string* getDiagnosis();
+    /**/string* getMasculine();
 };
 
 #endif // PATIENT_H
