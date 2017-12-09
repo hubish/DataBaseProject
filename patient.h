@@ -15,9 +15,9 @@ public:
     patient(patient* patient);
     patient(string surname, string name, string patronymic, char sex,
               string phoneNumber, string email, string dateOfBirth, int numberOfDescription,
-              string description[LENGTH], string medicalCard[2],
-              string adress, string photo[amountOfPhotos], int numberOfPhotos,
-              string linksToPhotos[amountOfPhotos], string lastEditing, string diagnosis[LENGTH], string masculine[LENGTH]);
+              string* description, string medicalCard[2],
+              string adress, string* photo, int numberOfPhotos,
+              string* linksToPhotos, int numberOfDiagnosis, string* diagnosis, int numberOfMasculine, string* masculine, string lastEditing);
 
     /**/bool saveIntoFile();
     /**/void print();

@@ -20,8 +20,8 @@ public:
     /**/human(human* human);
     /**/human(string surname, string name, string patronymic, char sex,
           string phoneNumber, string email, string dateOfBirth, int numberOfDescription,
-          string description[LENGTH], string medicalCard[2],
-          string adress, string photo[amountOfPhotos], int numberOfPhotos, string linksToPhotos[amountOfPhotos], string lastEditing);
+          string* description, string medicalCard[2],
+          string adress, string* photo, int numberOfPhotos, string* linksToPhotos, string lastEditing);
     /**/virtual bool saveIntoFile();
     /**/virtual bool downloadFromFile(string fileName);
     /**/bool setPhoto(string photoName, string fullPath);
