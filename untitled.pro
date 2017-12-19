@@ -28,24 +28,27 @@ SOURCES += \
         mainWindow.cpp \
     frameOfCreatingDoctor.cpp \
     frameOfCreatingPatient.cpp \
-    viewOfPatient.cpp \
-    avlTree.cpp \
     doctor.cpp \
     human.cpp \
-    patient.cpp
+    patient.cpp \
+    frameToVeiwPhotos.cpp \
+    patientChoice.cpp \
+    avlTree.cpp
 
 HEADERS += \
         mainWindow.h \
     frameOfCreatingDoctor.h \
     frameOfCreatingPatient.h \
-    viewOfPatient.h \
-    avlTree.h \
     doctor.h \
     human.h \
-    patient.h
+    patient.h \
+    frameToVeiwPhotos.h \
+    patientChoice.h \
+    avlTree.h
 
 FORMS += \
         mainWindow.ui \
     frameOfCreatingDoctor.ui \
     frameOfCreatingPatient.ui \
-    viewOfPatient.ui
+    frameToVeiwPhotos.ui \
+    patientChoice.ui
